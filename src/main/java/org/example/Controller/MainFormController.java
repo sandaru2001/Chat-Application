@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class MainFormController {
     public JFXButton btnStart;
+    public AnchorPane root;
 
     public void btnStartOnAction(ActionEvent actionEvent) throws IOException {
         startServer();
@@ -24,6 +25,7 @@ public class MainFormController {
         stage.setScene(scene);
         stage.setTitle("Server Form");
         stage.show();
+        root.getScene().getWindow().hide();
     }
 
     public void startServer() throws IOException {
