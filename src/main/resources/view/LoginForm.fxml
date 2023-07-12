@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="600.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/17973908.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="234.0" layoutY="76.0" prefHeight="449.0" prefWidth="342.0" style="-fx-background-color: #212121;">
+         <children>
+            <Label layoutX="145.0" layoutY="32.0" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Mongolian Baiti" size="35.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="146.0" layoutY="76.0" prefHeight="4.0" prefWidth="84.0" style="-fx-background-color: #76ff03;" />
+            <JFXButton fx:id="btnLogin" layoutX="87.0" layoutY="297.0" onAction="#btnLoginOnAction" prefHeight="45.0" prefWidth="184.0" style="-fx-background-color: #76ff03; -fx-background-radius: 90;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="39.0" fitWidth="40.0" layoutX="19.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons8-person-64.png" />
+               </image>
+            </ImageView>
+            <JFXComboBox fx:id="UsernameCombox" focusColor="#00ff44" layoutX="63.0" layoutY="110.0" onAction="#CmbLoadUsername" prefHeight="45.0" prefWidth="253.0" promptText="Username" />
+            <JFXButton fx:id="BtnSignin" layoutX="87.0" layoutY="360.0" onAction="#btnSigninOnAction" prefHeight="45.0" prefWidth="184.0" style="-fx-background-color: #76ff03; -fx-background-radius: 90;" text="Signin" textFill="WHITE">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

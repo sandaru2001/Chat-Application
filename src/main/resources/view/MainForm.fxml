@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.MainFormController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/17973908.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="244.0" layoutY="86.0" prefHeight="449.0" prefWidth="342.0" style="-fx-background-color: #212121;">
+         <children>
+            <Label layoutX="125.0" layoutY="37.0" text="Server" textFill="WHITE">
+               <font>
+                  <Font name="Mongolian Baiti" size="35.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="129.0" layoutY="76.0" prefHeight="4.0" prefWidth="84.0" style="-fx-background-color: #76ff03;" />
+            <JFXButton fx:id="btnStart" layoutX="79.0" layoutY="356.0" onAction="#btnStartOnAction" prefHeight="45.0" prefWidth="184.0" style="-fx-background-color: #76ff03; -fx-background-radius: 90;" text="Start Server" textFill="WHITE">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="207.0" fitWidth="227.0" layoutX="79.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/sending-letter-email-isolated-cute-mail-cartoon-face-illustration-vector.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

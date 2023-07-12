@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXTextField?>
+<AnchorPane prefHeight="805.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.ClientFormController">
+    <children>
+        <ImageView fitHeight="801.0" fitWidth="471.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/Background.jpg" />
+            </image>
+        </ImageView>
+        <JFXButton fx:id="BtnSend" defaultButton="true" layoutX="344.0" layoutY="745.0" onAction="#BtnSendOnAction" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #76ff03; -fx-background-radius: 90;" text="Send" textFill="WHITE">
+            <effect>
+                <DropShadow radius="4.75" width="0.0" />
+            </effect>
+            <font>
+                <Font name="Bookman Old Style Bold" size="18.0" />
+            </font>
+        </JFXButton>
+        <JFXTextField fx:id="TxtField" focusColor="WHITE" layoutX="5.0" layoutY="747.0" opacity="0.47" prefHeight="44.0" prefWidth="329.0" style="-fx-background-color: #212121; -fx-background-radius: 90; -fx-text-fill: #76ff03;" unFocusColor="WHITE">
+            <font>
+                <Font name="Bookman Old Style Bold" size="18.0" />
+            </font>
+        </JFXTextField>
+        <ScrollPane layoutX="16.0" layoutY="95.0" prefHeight="591.0" prefWidth="432.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="588.0" prefWidth="433.0">
+                    <children>
+                        <VBox fx:id="VBox" prefHeight="591.0" prefWidth="433.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <ImageView fx:id="Imgselection" fitHeight="44.0" fitWidth="38.0" layoutX="277.0" layoutY="750.0" onMouseClicked="#imgChooseOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/icons8-camera-50.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="31.0" layoutY="21.0" prefHeight="57.0" prefWidth="288.0" text="Client">
+            <font>
+                <Font name="Broadway" size="37.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
