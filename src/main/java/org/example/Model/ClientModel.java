@@ -9,19 +9,22 @@ import java.sql.SQLException;
 
 public class ClientModel {
     public static boolean checkUser(String userName, String password) throws SQLException {
-        boolean valid=false;
         Connection connection = DBConnection.getInstance().getConnection();
-        String sql="SELECT * FROM user WHERE User_name= ?";
+        String sql="SELECT Password FROM user WHERE User_name = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1,userName);
         ResultSet resultSet = pstm.executeQuery();
 
+        System.out.println("OK");
         if(resultSet.next()){
-            String user_password = resultSet.getString(2);
+            System.out.println("QQQQQ");
+            String user_password = resultSet.getString(1);
             if(user_password.equals(password)){
-                valid=true;
+                System.out.println("Done");
+                return true;
             }
         }
-        return valid;
+        System.out.println("Not Done");
+        return false;
     }
 }

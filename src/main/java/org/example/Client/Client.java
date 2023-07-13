@@ -2,6 +2,7 @@ package org.example.Client;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.Controller.ClientFormController;
 
@@ -29,6 +30,11 @@ public class Client implements Runnable, Serializable {
         dataOutputStream.writeUTF(name);
         dataOutputStream.flush();
 
+        try {
+            loadScene();
+        }catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 
     @Override
@@ -44,6 +50,11 @@ public class Client implements Runnable, Serializable {
         while (!message.equals("finish")){
             try {
                 message = dataInputStream.readUTF();
+                if (message.equals("*image*")) {
+                    receiveImg();
+                }else {
+                    clientFormController.writeMsg(message);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -67,5 +78,30 @@ public class Client implements Runnable, Serializable {
         Parent parent = loader.load();
         clientFormController =loader.load();
         clientFormController.setClient(this);
+        stage.setResizable(false);
+        stage.setScene(new Scene(parent));
+        stage.setTitle(name + "'s Chat");
+        stage.show();
+
+        stage.setOnCloseRequest(windowEvent -> {
+            try {
+                dataInputStream.close();
+                dataOutputStream.close();
+                socket.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+    public String getName() {
+        return name;
+    }
+    public void receiveImg() throws IOException {
+        String utf = dataInputStream.readUTF();
+        int size = dataInputStream.readInt();
+        byte[] bytes = new byte[size];
+        dataInputStream.readFully(bytes);
+        System.out.println(name + "-Image Received: from " + utf);
+        clientFormController.setImg(bytes, utf);
     }
 }

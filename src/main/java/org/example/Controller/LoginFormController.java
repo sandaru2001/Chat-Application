@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.Client.Client;
 import org.example.Model.ClientModel;
 import org.example.Model.LoginModel;
 
@@ -20,6 +21,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class    LoginFormController implements Initializable {
 
@@ -31,7 +33,7 @@ public class    LoginFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadClientIds();
+        loadClientName();
     }
 
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
@@ -43,13 +45,15 @@ public class    LoginFormController implements Initializable {
             isValid = ClientModel.checkUser(name, password);
         }catch (SQLException e) {
         }
+
+        System.out.println(isValid);
         if (isValid) {
+            load();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientForm.fxml"));
             AnchorPane anchorPane = loader.load();
             Scene scene = new Scene(anchorPane);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Client Login");
             stage.show();
         }
     }
@@ -69,13 +73,13 @@ public class    LoginFormController implements Initializable {
 
     }
 
-    private void loadClientIds() {
+    private void loadClientName() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> Ids = LoginModel.getClientId();
+            List<String> names = LoginModel.getClientName();
 
-            for (String id : Ids) {
-                obList.add(id);
+            for (String name : names) {
+                obList.add(name);
             }
             UsernameCombox.setItems(obList);
         } catch (SQLException e) {
@@ -83,5 +87,13 @@ public class    LoginFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
         }
     }
-
+    private void load() throws IOException {
+        if (Pattern.matches("^[a-zA-Z\\s]+", UsernameCombox.getId())) {
+            Client client = new Client(UsernameCombox.getId());
+            Thread thread = new Thread(client);
+            thread.start();
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.close();
+        }
+    }
 }

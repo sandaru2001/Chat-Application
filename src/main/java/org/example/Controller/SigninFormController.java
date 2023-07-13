@@ -10,8 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.example.DBConnection.DBConnection;
-import org.example.Model.ClientModel;
+import org.example.Client.Client;
 import org.example.Model.SignInModel;
 import org.example.Util.Regex;
 
@@ -20,6 +19,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class SigninFormController  implements Initializable{
 
@@ -37,6 +37,8 @@ public class SigninFormController  implements Initializable{
     public JFXButton BtnBack;
     public AnchorPane root;
 
+    public String name;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         generateNextOrderId();
@@ -51,9 +53,39 @@ public class SigninFormController  implements Initializable{
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) throws SQLException, IOException {
-;
+        try(Connection con = DriverManager.getConnection(URL,props)) {
+
+            String sql = "INSERT INTO user(User_Id, User_name, Password) VALUES(?,?,?)";
+
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1, LblUserId.getText());
+            pstm.setString(2, TxtUsername.getText());
+            pstm.setString(3, TxtPassword.getText());
+
+            int affectrdRows = pstm.executeUpdate();
+            if (affectrdRows > 0) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Client Added!!");
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Error !!");
+            }
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientForm.fxml"));
+        AnchorPane anchorPane = loader.load();
+        Scene scene = new Scene(anchorPane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(name + "'s Chat");
+        stage.show();
+        root.getScene().getWindow().hide();
     }
-    public void btnBackOnAction(ActionEvent actionEvent) {
+    public void btnBackOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
+        AnchorPane anchorPane = loader.load();
+        Scene scene = new Scene(anchorPane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        root.getScene().getWindow().hide();
     }
 
 }
