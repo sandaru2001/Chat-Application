@@ -34,13 +34,13 @@
                   <Image url="@../img/icons8-person-64.png" />
                </image>
             </ImageView>
-            <JFXComboBox fx:id="UsernameCombox" focusColor="#00ff44" layoutX="63.0" layoutY="110.0" onAction="#CmbLoadUsername" prefHeight="45.0" prefWidth="253.0" promptText="Username" />
+            <JFXComboBox fx:id="UsernameCombox" focusColor="#00ff44" layoutX="63.0" layoutY="110.0" onAction="#CmbLoadUsername" prefHeight="45.0" prefWidth="253.0" promptText="Username" style="-fx-text-fill: white; -fx-prompt-text-fill: while;" unFocusColor="#7c7c7c" />
             <JFXButton fx:id="BtnSignin" layoutX="87.0" layoutY="360.0" onAction="#btnSigninOnAction" prefHeight="45.0" prefWidth="184.0" style="-fx-background-color: #76ff03; -fx-background-radius: 90;" text="Signin" textFill="WHITE">
                <font>
                   <Font name="Bookman Old Style Bold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXPasswordField fx:id="TxtLoginPassword" focusColor="#00ff44" layoutX="61.0" layoutY="191.0" prefHeight="45.0" prefWidth="253.0" promptText="Password" />
+            <JFXPasswordField fx:id="TxtLoginPassword" focusColor="#00ff44" layoutX="61.0" layoutY="191.0" prefHeight="45.0" prefWidth="253.0" promptText="Password" style="-fx-text-fill: white;" />
             <ImageView fitHeight="39.0" fitWidth="40.0" layoutX="19.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/icons8-lock-24.png" />

@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="805.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.ServerFormController">
@@ -28,17 +29,25 @@
             <Font name="Bookman Old Style Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXTextField fx:id="TxtField" focusColor="WHITE" layoutX="12.0" layoutY="754.0" opacity="0.47" prefHeight="44.0" prefWidth="329.0" style="-fx-background-color: #212121; -fx-background-radius: 90; -fx-text-fill: #76ff03;" unFocusColor="WHITE">
+      <JFXTextField fx:id="TxtField" focusColor="WHITE" layoutX="12.0" layoutY="754.0" onAction="#TxtFieldOnAction" opacity="0.47" prefHeight="44.0" prefWidth="329.0" style="-fx-background-color: #212121; -fx-background-radius: 90; -fx-text-fill: #76ff03;" unFocusColor="WHITE">
          <font>
             <Font name="Bookman Old Style Bold" size="18.0" />
          </font>
       </JFXTextField>
-      <ScrollPane layoutX="23.0" layoutY="102.0" prefHeight="591.0" prefWidth="432.0" />
-      <ImageView fitHeight="44.0" fitWidth="38.0" layoutX="289.0" layoutY="757.0" onMouseClicked="#emojiChooseOnAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/icons8-face-holding-back-tears-48.png" />
-         </image>
-      </ImageView>
+      <ScrollPane layoutX="23.0" layoutY="102.0" prefHeight="591.0" prefWidth="432.0">
+         <content>
+            <VBox fx:id="vBox" prefHeight="589.0" prefWidth="429.0" />
+         </content>
+      </ScrollPane>
+      <JFXButton layoutX="279.0" layoutY="752.0" onAction="#emojiChooseOnAction" prefHeight="38.0" prefWidth="72.0">
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons8-face-holding-back-tears-48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
       <Label layoutX="33.0" layoutY="29.0" prefHeight="57.0" prefWidth="288.0" text="Server">
          <font>
             <Font name="Broadway" size="37.0" />

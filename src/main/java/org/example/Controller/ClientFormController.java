@@ -25,6 +25,7 @@ import java.nio.file.Files;
 
 public class ClientFormController {
     public VBox VBox;
+    public Label lblUsername;
     private Client client;
     public JFXTextField TxtField;
     public ImageView Imgselection;
@@ -124,5 +125,9 @@ public class ClientFormController {
             hBox.getChildren().addAll(msglbl, imageView);
             VBox.getChildren().add(hBox);
         });
+    }
+
+    public void setLblname(String name) {
+        lblUsername.setText(name);
     }
 }

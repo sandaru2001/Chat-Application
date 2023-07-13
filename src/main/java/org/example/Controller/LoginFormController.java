@@ -36,25 +36,21 @@ public class    LoginFormController implements Initializable {
         loadClientName();
     }
 
-    public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
-        String name = UsernameCombox.getId();
+    public void btnLoginOnAction(ActionEvent actionEvent) throws IOException, SQLException {
+        String name = (String) UsernameCombox.getSelectionModel().getSelectedItem();
         String password = TxtLoginPassword.getText();
+        String pass = ClientModel.checkUser(name);
 
-        boolean isValid = false;
-        try {
-            isValid = ClientModel.checkUser(name, password);
-        }catch (SQLException e) {
-        }
-
-        System.out.println(isValid);
-        if (isValid) {
-            load();
+        if (pass.equalsIgnoreCase(password)) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientForm.fxml"));
             AnchorPane anchorPane = loader.load();
+            ClientFormController controller = loader.getController();
+            controller.setLblname(name);
             Scene scene = new Scene(anchorPane);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
+            root.getScene().getWindow().hide();
         }
     }
 
@@ -85,15 +81,6 @@ public class    LoginFormController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
-        }
-    }
-    private void load() throws IOException {
-        if (Pattern.matches("^[a-zA-Z\\s]+", UsernameCombox.getId())) {
-            Client client = new Client(UsernameCombox.getId());
-            Thread thread = new Thread(client);
-            thread.start();
-            Stage stage = (Stage) root.getScene().getWindow();
-            stage.close();
         }
     }
 }
