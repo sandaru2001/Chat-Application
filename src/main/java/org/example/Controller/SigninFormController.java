@@ -51,24 +51,7 @@ public class SigninFormController  implements Initializable{
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) throws SQLException, IOException {
-        //boolean isValidClientId = Regex.isValidClientId(TxtUsername.getText());
-        //String id = LblUserId.getText();
-        String name = TxtUsername.getText();
-        String password = TxtPassword.getText();
-
-        boolean isValid = false;
-        try {
-            isValid = ClientModel.checkUser(name, password);
-        }catch (SQLException e) {
-        }
-        if (isValid) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientForm.fxml"));
-            AnchorPane anchorPane = loader.load();
-            Scene scene = new Scene(anchorPane);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        }
+;
     }
     public void btnBackOnAction(ActionEvent actionEvent) {
     }
