@@ -54,6 +54,15 @@ public class ServerFormController implements Initializable {
     public GridPane emojiGridPane;
     public VBox vBox;
 
+    public void ImgLoginClientOnAction(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
+        AnchorPane anchorPane = loader.load();
+        Scene scene = new Scene(anchorPane);
+        Stage stage = new Stage();
+        stage.setTitle("Add New Client");
+        stage.setScene(scene);
+        stage.show();
+    }
     public void BtnSendOnAction() throws IOException {
         emojiAnchorPane.setVisible(false);
         String text = TxtField.getText();
@@ -70,31 +79,22 @@ public class ServerFormController implements Initializable {
             }
         }
     }
-    public void ImgLoginClientOnAction(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
-        AnchorPane anchorPane = loader.load();
-        Scene scene = new Scene(anchorPane);
-        Stage stage = new Stage();
-        stage.setTitle("Add New Client");
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    public void emojiChooseOnAction(ActionEvent mouseEvent) {
-        emojiAnchorPane.setVisible(!emojiAnchorPane.isVisible());
-    }
     public void SendMsg(String text) throws IOException {
         ClientHandler.broadcast(text);
         HBox hBox = new HBox();
         hBox.setStyle("-fx-alignment: center-right;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
         Label messageLbl = new Label(text);
-        messageLbl.setStyle("-fx-background-color:#27ae60;-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: white;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
+        messageLbl.setStyle("-fx-background-color:#76ff03;-fx-background-radius:15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: black;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
         hBox.getChildren().add(messageLbl);
         vBox.getChildren().add(hBox);
         TxtField.clear();
     }
     public void TxtFieldOnAction(ActionEvent actionEvent) throws IOException {
         BtnSendOnAction();
+    }
+    public void emojiChooseOnAction(ActionEvent mouseEvent) {
+        emojiAnchorPane.setVisible(!emojiAnchorPane.isVisible());
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Server implements Runnable{
     private static Server server;
     private final ServerSocket serverSocket;
     public Server() throws IOException {
-        serverSocket = new ServerSocket(3004);
+        serverSocket = new ServerSocket(1234);
         System.out.println("Server Started");
     }
     public static Server getServerSocket() throws IOException {
@@ -21,6 +21,10 @@ public class Server implements Runnable{
             System.out.println("Listening....");
             try {
                 Socket socket = serverSocket.accept();
+                System.out.println("accepted");
+                ClientHandler clientHandler =new ClientHandler(socket);
+                Thread thread = new Thread(clientHandler);
+                thread.start();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

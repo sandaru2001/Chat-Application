@@ -26,7 +26,7 @@
                 <Font name="Bookman Old Style Bold" size="18.0" />
             </font>
         </JFXButton>
-        <JFXTextField fx:id="TxtField" focusColor="WHITE" layoutX="5.0" layoutY="747.0" opacity="0.47" prefHeight="44.0" prefWidth="329.0" style="-fx-background-color: #212121; -fx-background-radius: 90; -fx-text-fill: #76ff03;" unFocusColor="WHITE">
+        <JFXTextField fx:id="TxtField" focusColor="WHITE" layoutX="5.0" layoutY="747.0" opacity="0.47" prefHeight="44.0" prefWidth="329.0" style="-fx-background-color: #212121; -fx-background-radius: 90; -fx-text-fill: white;" unFocusColor="WHITE">
             <font>
                 <Font name="Bookman Old Style Bold" size="18.0" />
             </font>

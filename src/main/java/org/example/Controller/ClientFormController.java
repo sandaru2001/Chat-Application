@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -20,10 +21,12 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
+import java.util.ResourceBundle;
 
 
-public class ClientFormController {
+public class ClientFormController implements Initializable {
     public VBox VBox;
     public Label lblUsername;
     private Client client;
@@ -61,6 +64,24 @@ public class ClientFormController {
         }
     }
 
+    public void appendText(String msg) {
+        HBox hBox = new HBox();
+        hBox.setStyle("-fx-alignment: center-right;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
+        Label label = new Label(msg);
+        label.setStyle("-fx-background-color: #76ff03;-fx-background-radius: 15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: black;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
+        hBox.getChildren().add(label);
+        VBox.getChildren().add(hBox);
+    }
+
+    public void writeMsg(String msg){
+        HBox hBox = new HBox();
+        hBox.setStyle("-fx-alignment: center-left;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
+        Label label =new Label(msg);
+        label.setStyle("");
+        hBox.getChildren().add(label);
+        VBox.getChildren().add(hBox);
+    }
+
     public void imgChooseOnAction(MouseEvent mouseEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Image File");
@@ -92,24 +113,6 @@ public class ClientFormController {
 
     }
 
-    public void appendText(String msg) {
-        HBox hBox = new HBox();
-        hBox.setStyle("-fx-alignment: center-right;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
-        Label label = new Label(msg);
-        label.setStyle("-fx-background-color: #76ff03;-fx-background-radius: 15;-fx-font-size: 18;-fx-font-weight: normal;-fx-text-fill: black;-fx-wrap-text: true;-fx-alignment: center-left;-fx-content-display: left;-fx-padding: 10;-fx-max-width: 350;");
-        hBox.getChildren().add(label);
-        VBox.getChildren().add(hBox);
-    }
-
-    public void writeMsg(String msg){
-        HBox hBox = new HBox();
-        hBox.setStyle("-fx-alignment: center-left;-fx-fill-height: true;-fx-min-height: 50;-fx-pref-width: 520;-fx-max-width: 520;-fx-padding: 10");
-        Label label =new Label(msg);
-        label.setStyle("");
-        hBox.getChildren().add(label);
-        VBox.getChildren().add(hBox);
-    }
-
     public void setImg(byte[] bytes, String sender) {
         HBox hBox = new HBox();
         Label msglbl =new Label(sender);
@@ -129,5 +132,10 @@ public class ClientFormController {
 
     public void setLblname(String name) {
         lblUsername.setText(name);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

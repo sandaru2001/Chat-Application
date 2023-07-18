@@ -38,13 +38,6 @@ public class Client implements Runnable, Serializable {
     }
 
     @Override
-    protected void finalize() throws IOException {
-        dataInputStream.close();
-        dataOutputStream.close();
-        socket.close();
-    }
-
-    @Override
     public void run() {
         String message = "";
         while (!message.equals("finish")){
@@ -89,7 +82,7 @@ public class Client implements Runnable, Serializable {
                 dataOutputStream.close();
                 socket.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(e);
             }
         });
     }
