@@ -32,11 +32,17 @@ public class Client implements Runnable, Serializable {
 
         try {
             loadScene();
-        }catch (IOException e) {
-            throw new RuntimeException();
+        }catch (RuntimeException e) {
+            e.getCause().printStackTrace();
         }
     }
-
+  /*  @Override
+    protected void finalize() throws Throwable {
+        Thread.interrupted(); // To terminate the thread, interrupt it
+        dataInputStream.close();
+        dataOutputStream.close();
+        socket.close();
+    }*/
     @Override
     public void run() {
         String message = "";
@@ -49,7 +55,11 @@ public class Client implements Runnable, Serializable {
                     clientFormController.writeMsg(message);
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                try {
+                    socket.close();
+                }catch (IOException ex) {
+
+                }
             }
         }
     }
@@ -66,16 +76,21 @@ public class Client implements Runnable, Serializable {
         dataOutputStream.flush();
     }
     public void loadScene() throws IOException {
+        System.out.println("Load scene triggered");
         Stage stage =new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientForm.fxml"));
+        System.out.println("Loaded");
         Parent parent = loader.load();
-        clientFormController =loader.load();
+        clientFormController =loader.getController();
+        System.out.println("controller set..");
         clientFormController.setClient(this);
+
         stage.setResizable(false);
         stage.setScene(new Scene(parent));
         stage.setTitle(name + "'s Chat");
         stage.show();
 
+        System.out.println("done");
         stage.setOnCloseRequest(windowEvent -> {
             try {
                 dataInputStream.close();

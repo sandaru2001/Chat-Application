@@ -70,14 +70,16 @@ public class SigninFormController  implements Initializable{
                 new Alert(Alert.AlertType.ERROR, "Error !!");
             }
         }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientForm.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ClientForm.fxml"));
         AnchorPane anchorPane = loader.load();
         ClientFormController controller = loader.getController();
         controller.setLblname(name);
         Scene scene = new Scene(anchorPane);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
+        Client client = new Client(name);
+        new Thread(client).start();
         root.getScene().getWindow().hide();
     }
     public void btnBackOnAction(ActionEvent actionEvent) throws IOException {

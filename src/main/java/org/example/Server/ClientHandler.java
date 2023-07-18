@@ -27,7 +27,7 @@ public class ClientHandler implements Runnable{
 
     public static void broadcast(String msg) throws IOException {
         for (ClientHandler handler : clientHandlerList) {
-            handler.sendMessage("SERVER", msg);
+            handler.sendMessage("Server", msg);
         }
     }
 
